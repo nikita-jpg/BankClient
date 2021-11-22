@@ -111,34 +111,52 @@ const valueLabelFormat = (value) => {
   return (
     <div className="App">
 
-      <Autocomplete
-        disablePortal
-        id="combo-box-demo"
-        options={tarifs.map((tarif)=>tarif.tarifName)}
-        sx={{ width: 300 }}
-        onInputChange={testChange}
-        renderInput={(params) => <TextField {...params} label="Movie" />}
-      />
+      <div></div>
+      <div className="App_container">
 
-      <TextField  id="filled-basic" label="Filled" variant="filled" onChange={handleChangeMoney} value={moneyValue}/> 
+        <div className="App_containerItem">
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={tarifs.map((tarif)=>tarif.tarifName)}
+            sx={{ width: 300 }}
+            onInputChange={testChange}
+            renderInput={(params) => <TextField {...params} label="Выберете тариф" />}
+          />
+        </div>
 
-      <Typography id="non-linear-slider" gutterBottom>
-        На срок: {valueLabelFormat(yearValue)}
-      </Typography>
-      <Slider
-        value={yearValue}
-        min={1}
-        step={1}
-        max={10}
-        // getAriaValueText={valueLabelFormat}
-        // valueLabelFormat={valueLabelFormat}
-        onChange={handleChangeYears}
-        valueLabelDisplay="auto"
-        aria-labelledby="non-linear-slider"
-      />
+        <div className="App_containerItem">
+          <TextField className="App_containerItem" id="filled-basic" label="Введите сумму вклада" variant="filled" onChange={handleChangeMoney} value={moneyValue}/> 
+        </div>
 
-    <TextField  id="filled-basic" label="Filled" variant="filled" disabled value={profit}/> 
-    </div>
+        <div className="App_containerItem">
+          <Typography id="non-linear-slider" gutterBottom style={{textAlign:"start", color:"rgba(0, 0, 0, 0.6)"}}>
+            На срок: {valueLabelFormat(yearValue)}
+          </Typography>
+          <Slider
+            style={{color:"rgba(0, 0, 0, 0.6)"}}
+            value={yearValue}
+            min={1}
+            step={1}
+            max={10}
+            // getAriaValueText={valueLabelFormat}
+            // valueLabelFormat={valueLabelFormat}
+            onChange={handleChangeYears}
+            valueLabelDisplay="auto"
+            aria-labelledby="non-linear-slider"
+          />
+        </div>
+
+        <div className="App_containerItem">
+          <p className="Profit_title">Вы заработаете</p>
+          <p className="Profit_money">{profit}</p>
+        </div>
+
+
+
+
+        </div>
+      </div>
   );
 }
 
