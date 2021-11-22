@@ -1,0 +1,9 @@
+.tables{
+    width: auto;
+    height: auto;
+    background-color: var(--main-el-color);
+    border-radius: 20px;
+    padding: 20px;
+
+    display: block; 
+}
