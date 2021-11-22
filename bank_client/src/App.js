@@ -5,24 +5,50 @@ import { Header } from './comonents/Header/Header';
 import { Menu } from "./comonents/Menu/Menu";
 import {TabContent} from './comonents/TabContent/TabContent';
 import { Tables } from "./comonents/Tables/Tables";
+import {Autocomplete, TextField} from '@mui/material/';
+import axios from 'axios';
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 function App() {
+  const uriTables = "https://83b0-93-81-207-6.ngrok.io/test"
 
-  const items = [
-    { title: 'Меню', content: <Menu/> },
-    { title: 'О ресторане', content: <About/>},
-    { title: 'Бронь', content: <Tables/> },
-  ];
+const tarifs = [
+{ 
+  tarifName:'Тариф 1', 
+  tarifServerName:'Tarif1'
+},
+{ 
+  tarifName:'Тариф 2', 
+  tarifServerName:'Tarif2'
+}
+];
+const testChange = (event, value) =>{
 
-  // const items_names = items.map.
+  let tarifServetValue = "";
+  for(let i=0;i<tarifs.length;i++){
+    if(tarifs[i].tarifName === value){
+      tarifServetValue = tarifs[i].tarifServerName
+    }
+  }
 
-const [activeNumber, setActive] = useState(2)
+  console.log(tarifServetValue)
 
-const openTab = e => setActive(+e.target.dataset.index);
+  axios.get(uriTables).then((resp) =>{
+    console.log(resp)
+  })
+}
+
+
   return (
     <div className="App">
-      <Header tabsNames={items} setTab={openTab} activeNumber={activeNumber}></Header>
-      <TabContent {...items[activeNumber]} />
+      <Autocomplete
+        disablePortal
+        id="combo-box-demo"
+        options={tarifs.map((tarif)=>tarif.tarifName)}
+        sx={{ width: 300 }}
+        onInputChange={testChange}
+        renderInput={(params) => <TextField {...params} label="Movie" />}
+      />
     </div>
   );
 }
