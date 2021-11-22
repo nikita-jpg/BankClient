@@ -11,7 +11,7 @@ const { evaluate } = require('mathjs')
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 const App = () => {
-  const uriTables = "https://37df-93-81-207-6.ngrok.io/?tarifServerName="
+  const uriTables = "https://a9ca-93-81-207-6.ngrok.io/?tarifServerName="
 
 const tarifs = [
 { 
@@ -29,10 +29,18 @@ const tarifs = [
 }
 ];
 
+const [isDisabled, setIsDisabled] = useState(true)
 const [formula, setFormula] = useState("y*x")
 const [yearValue, setYearValue] = useState(1)
 const [moneyValue, setMoneyValue] = useState(1000)
 const [profit, setProfit] = useState(1000)
+
+const setDefault = () => {
+  setFormula("y*x")
+  setYearValue(1)
+  setMoneyValue(1000)
+  setProfit(1000)
+}
 
 //x - количество денег, y - количество лет
 const getResult = (x,y) => Math.floor(evaluate(formula, {x:x,y:y}))
@@ -46,10 +54,18 @@ const testChange = (event, value) =>{
     }
   }
 
-  axios.get(uriTables + tarifServetValue).then((resp) =>{
-    setFormula(resp.data)
-    setProfit(getResult(moneyValue, yearValue))
-  })
+  if(tarifServetValue !== ""){
+    axios.get(uriTables + tarifServetValue).then((resp) =>{
+      setFormula(resp.data)
+      setProfit(getResult(moneyValue, yearValue))
+      setIsDisabled(false)
+    })
+  }
+  else{
+    setIsDisabled(true)
+    setDefault()
+  }
+
 }
 
 //Заработок
@@ -111,13 +127,11 @@ const valueLabelFormat = (value) => {
   return (
     <div className="App">
 
-      <div></div>
+      <div className="App__title">Анализ будущего вклада</div>
       <div className="App_container">
 
         <div className="App_containerItem">
           <Autocomplete
-            disablePortal
-            id="combo-box-demo"
             options={tarifs.map((tarif)=>tarif.tarifName)}
             sx={{ width: 300 }}
             onInputChange={testChange}
@@ -126,7 +140,7 @@ const valueLabelFormat = (value) => {
         </div>
 
         <div className="App_containerItem">
-          <TextField className="App_containerItem" id="filled-basic" label="Введите сумму вклада" variant="filled" onChange={handleChangeMoney} value={moneyValue}/> 
+          <TextField className="App_containerItem" id="filled-basic" label="Введите сумму вклада" disabled={isDisabled} variant="filled" onChange={handleChangeMoney} value={moneyValue}/> 
         </div>
 
         <div className="App_containerItem">
@@ -134,6 +148,7 @@ const valueLabelFormat = (value) => {
             На срок: {valueLabelFormat(yearValue)}
           </Typography>
           <Slider
+            disabled={isDisabled}
             style={{color:"rgba(0, 0, 0, 0.6)"}}
             value={yearValue}
             min={1}
