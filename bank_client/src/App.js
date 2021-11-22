@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
 import './App.css';
-import { About } from "./comonents/About/About";
-import { Header } from './comonents/Header/Header';
-import { Menu } from "./comonents/Menu/Menu";
-import {TabContent} from './comonents/TabContent/TabContent';
-import { Tables } from "./comonents/Tables/Tables";
-import {Autocomplete, TextField, Slider, Typography, FilledInput } from '@mui/material/';
+import {Autocomplete, TextField, Slider, Typography } from '@mui/material/';
 import axios from 'axios';
 const { evaluate } = require('mathjs')
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 const App = () => {
-  const uriTables = "https://a9ca-93-81-207-6.ngrok.io/?tarifServerName="
+const uriTables = "https://a9ca-93-81-207-6.ngrok.io/?tarifServerName="
 
 const tarifs = [
 { 

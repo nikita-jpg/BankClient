@@ -1,9 +1,0 @@
-.tables__content{
-    width: 100%;
-    height: min-content;
-
-    display: grid;
-    grid-template-rows: repeat(4,1fr);
-    grid-template-columns: repeat(10,1fr);
-    grid-gap: 20px;
-}
