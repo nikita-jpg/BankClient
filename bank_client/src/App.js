@@ -149,8 +149,6 @@ const valueLabelFormat = (value) => {
             min={1}
             step={1}
             max={10}
-            // getAriaValueText={valueLabelFormat}
-            // valueLabelFormat={valueLabelFormat}
             onChange={handleChangeYears}
             valueLabelDisplay="auto"
             aria-labelledby="non-linear-slider"
@@ -161,9 +159,6 @@ const valueLabelFormat = (value) => {
           <p className="Profit_title">Вы заработаете</p>
           <p className="Profit_money">{profit}</p>
         </div>
-
-
-
 
         </div>
       </div>

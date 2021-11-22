@@ -31,12 +31,14 @@
   text-align: start;
   color:black;
   font-size: 18px;
+  margin-bottom: 10px;
 }
 .Profit_money{
   text-align: start;
   color:black;
   font-size: 20px;
   text-decoration:underline;
+  margin-top: 10px;
 }
 
 
