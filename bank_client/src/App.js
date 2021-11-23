@@ -40,7 +40,7 @@ const setDefault = () => {
 //x - количество денег, y - количество лет
 const getResult = (x,y) => Math.floor(evaluate(formula, {x:x,y:y}))
 
-const testChange = (event, value) =>{
+const handleDropDownList = (event, value) =>{
 
   let tarifServetValue = "";
   for(let i=0;i<tarifs.length;i++){
@@ -129,7 +129,7 @@ const valueLabelFormat = (value) => {
           <Autocomplete
             options={tarifs.map((tarif)=>tarif.tarifName)}
             sx={{ width: 300 }}
-            onInputChange={testChange}
+            onInputChange={handleDropDownList}
             renderInput={(params) => <TextField {...params} label="Выберете тариф" />}
           />
         </div>
