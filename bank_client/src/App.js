@@ -156,7 +156,7 @@ const valueLabelFormat = (value) => {
         </div>
 
         <div className="App_containerItem">
-          <p className="Profit_title">Вы заработаете</p>
+          <p className="Profit_title">Сумма на выходе:</p>
           <p className="Profit_money">{profit}</p>
         </div>
 
