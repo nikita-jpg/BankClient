@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import './App.css';
 import {Autocomplete, TextField, Slider, Typography } from '@mui/material/';
 import axios from 'axios';
+import AutocompleteWrapper from "./components/AutocompleteWrapper/AutocompleteWrapper";
+import TextFieldWrapper from "./components/TextFieldWrapper/TextFieldWrapper";
+import TypographyWrapper from "./components/TypographyWrapper/TypographyWrapper";
+import SliderWrapper from "./components/SliderWrappe/SliderWrapper";
 const { evaluate } = require('mathjs')
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
@@ -76,23 +80,6 @@ const handleChangeMoney = (event) => {
   if(data.length <= 7 && (/^[0-9]+$/.test(data) || data.length===0)){
     setMoneyValue(event.target.value)
   }
-  // if(/^[0-9]+$/.test(data)){
-  //   let number = Number(data)
-  //   console.log(number)
-
-  //   if(number>=1000 && number<=1000000){
-  //     setMoneyValue(event.target.value)
-  //   }
-  // }
-  // const result = /^[0-9]+$/.test(data)
-  // console.log(result)
-
-  // setMoneyValue(event.target.value);
-  // console.log(event.target.value)
-  // if (typeof event.target.value === 'number') {
-  //   console.log(event.target.value)
-  //   setMoneyValue(event.target.value);
-  // }
 };
 
 //Года
@@ -123,36 +110,35 @@ const valueLabelFormat = (value) => {
     <div className="App">
 
       <div className="App__title">Анализ будущего вклада</div>
+
       <div className="App_container">
 
         <div className="App_containerItem">
-          <Autocomplete
-            options={tarifs.map((tarif)=>tarif.tarifName)}
-            sx={{ width: 300 }}
+          <AutocompleteWrapper
+            options={tarifs}
             onInputChange={handleDropDownList}
-            renderInput={(params) => <TextField {...params} label="Выберете тариф" />}
-          />
+            label="Выберете тариф"
+          >
+          </AutocompleteWrapper>
         </div>
 
         <div className="App_containerItem">
-          <TextField className="App_containerItem" id="filled-basic" label="Введите сумму вклада" disabled={isDisabled} variant="filled" onChange={handleChangeMoney} value={moneyValue}/> 
+          <TextFieldWrapper label="Введите сумму вклада" disabled={isDisabled} onChange={handleChangeMoney} value={moneyValue}/> 
         </div>
 
         <div className="App_containerItem">
-          <Typography id="non-linear-slider" gutterBottom style={{textAlign:"start", color:"rgba(0, 0, 0, 0.6)"}}>
-            На срок: {valueLabelFormat(yearValue)}
-          </Typography>
-          <Slider
+
+          <TypographyWrapper text={`На срок: ${valueLabelFormat(yearValue)}`}/>
+
+          <SliderWrapper
             disabled={isDisabled}
-            style={{color:"rgba(0, 0, 0, 0.6)"}}
             value={yearValue}
             min={1}
             step={1}
             max={10}
             onChange={handleChangeYears}
-            valueLabelDisplay="auto"
-            aria-labelledby="non-linear-slider"
           />
+          
         </div>
 
         <div className="App_containerItem">
