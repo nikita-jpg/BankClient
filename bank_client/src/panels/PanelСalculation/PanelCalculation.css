@@ -1,0 +1,39 @@
+.PanelCalculation_container{
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: white;
+    padding: 25px 20px 15px 20px;
+    border-radius: 10px;
+    max-width: 300px;
+    box-shadow: 0 0 5px rgba(122,122,122,0.5); */
+  }
+  .PanelCalculation_containerItem{
+    width: 100%;
+    height: 100%;
+  }
+  .PanelCalculation_containerItem:not(:first-child) {
+    margin-top: 20px;
+  }
+  .PanelCalculation__title{
+    text-align: center;
+    color:black;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .Profit_title{
+    text-align: start;
+    color:black;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .Profit_money{
+    text-align: start;
+    color:black;
+    font-size: 20px;
+    text-decoration:underline;
+    margin-top: 10px;
+  }
+  

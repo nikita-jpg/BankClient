@@ -1,62 +1,16 @@
 .App {
   height: 100%;
-  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   background-image: url("./imageBack.jpg");
   background-size: cover;
 }
-.App_container{
+.App__container{
+  max-height: 500px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  background-color: white;
-  padding: 25px 20px 15px 20px;
-  border-radius: 10px;
-  max-width: 300px;
-  box-shadow: 0 0 5px rgba(122,122,122,0.5);
+  align-items: stretch;
+  /* align-items: center;
+  justify-content: center; */
+  flex-direction: row;
 }
-.App_containerItem{
-  width: 100%;
-  height: 100%;
-}
-.App_containerItem:not(:first-child) {
-  margin-top: 20px;
-}
-.Profit_title{
-  text-align: start;
-  color:black;
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-.Profit_money{
-  text-align: start;
-  color:black;
-  font-size: 20px;
-  text-decoration:underline;
-  margin-top: 10px;
-}
-
-
-.App__title{
-  text-align: start;
-  color:black;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
-
