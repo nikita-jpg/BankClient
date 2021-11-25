@@ -4,12 +4,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import UserPage from "./pages/UserPage/UserPage";
+import AdminPage from './pages/AdminPage/AdminPage';
 
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
-      {/* <Route path="/" element={<App />} /> */}
       <Route path="/BankClient" element={<UserPage/>} />
+      <Route path="/admin" element={<AdminPage/>} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')

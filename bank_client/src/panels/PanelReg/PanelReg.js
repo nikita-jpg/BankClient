@@ -10,6 +10,7 @@ import './PanelReg.css'
 
 const PanelReg = ({openSuccessPanel=()=>{}}) => {
 
+    const userUrl = DEFAULT_URL + "/"
     const [nameValue, setNameValue] = useState("")
     const [nameError, setNameError] = useState({error:false, helpertext:""})
 
@@ -119,7 +120,7 @@ const PanelReg = ({openSuccessPanel=()=>{}}) => {
 
     //Отправка
     const sendData = () => {
-        axios.post(DEFAULT_URL,{
+        axios.post(userUrl,{
             name:nameValue,
             familia:familiaValue,
             otchestvo:otchestvoValue,
@@ -136,7 +137,6 @@ const PanelReg = ({openSuccessPanel=()=>{}}) => {
     const sendBtnClick = () => {
         if(checkAllData()){
             sendData()
-            setIsBtnSendDisabled(true)
         }
     }
 
