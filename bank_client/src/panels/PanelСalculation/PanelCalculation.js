@@ -5,12 +5,13 @@ import AutocompleteWrapper from "../../components/AutocompleteWrapper/Autocomple
 import SliderWrapper from "../../components/SliderWrappe/SliderWrapper";
 import TextFieldWrapper from "../../components/TextFieldWrapper/TextFieldWrapper";
 import TypographyWrapper from "../../components/TypographyWrapper/TypographyWrapper";
+import { DEFAULT_URL } from "../../consts";
 import PanelBlank from "../PanelBlank/PanelBlank";
 import './PanelCalculation.css'
 const { evaluate } = require('mathjs')
 
-const PanelCalculation = ({openRegPanel=()=>{}}) => {
-    const uriTables = "https://a9ca-93-81-207-6.ngrok.io/?tarifServerName="
+const PanelCalculation = ({}) => {
+    const uriTables = DEFAULT_URL + "?tarifServerName="
 
     const tarifs = [
     { 
