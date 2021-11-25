@@ -6,7 +6,7 @@ const AutocompleteWrapper = ({options, label, onInputChange=()=>{}}) => {
 
     return(
         <Autocomplete
-            options={options.map((tarif)=>tarif.tarifName)}
+            options={options}
             sx={{ width: 300 }}
             onInputChange={onInputChange}
             renderInput={(params) => <TextField {...params} label={label} />}

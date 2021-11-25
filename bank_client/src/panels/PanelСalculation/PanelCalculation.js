@@ -11,23 +11,9 @@ import './PanelCalculation.css'
 const { evaluate } = require('mathjs')
 
 const PanelCalculation = ({}) => {
-    const uriTables = DEFAULT_URL + "?tarifServerName="
+    const URL_GET_TARIFFS= DEFAULT_URL + "/getTariffs"
 
-    const tarifs = [
-    { 
-      tarifName:'Накопительный счёт', 
-      tarifServerName:'savings_acc'
-    },
-    { 
-      tarifName:'Вклад для студентов', 
-      tarifServerName:'contribution_for_students'
-    }
-    ,
-    { 
-      tarifName:'Вклад для военных', 
-      tarifServerName:'contribution_for_the_military'
-    }
-    ];
+    const [tariffs, setTariffs] = useState([]);
     
     const [isDisabled, setIsDisabled] = useState(true)
     const [formula, setFormula] = useState("y*x")
@@ -41,25 +27,25 @@ const PanelCalculation = ({}) => {
       setMoneyValue(1000)
       setProfit(1000)
     }
+
+    useEffect(()=>{
+      getTariffs()
+    },[])
     
     //x - количество денег, y - количество лет
     const getResult = (x,y) => Math.floor(evaluate(formula, {x:x,y:y}))
     
-    const handleDropDownList = (event, value) =>{
+    const handleDropDownList = (event, tariffRusianName) =>{
     
-      let tarifServetValue = "";
-      for(let i=0;i<tarifs.length;i++){
-        if(tarifs[i].tarifName === value){
-          tarifServetValue = tarifs[i].tarifServerName
+      for(let i=0;i<tariffs.length;i++){
+        if(tariffs[i].russianName === tariffRusianName){
+          setFormula(tariffs[i].formula)
         }
       }
     
-      if(tarifServetValue !== ""){
-        axios.get(uriTables + tarifServetValue).then((resp) =>{
-          setFormula(resp.data)
-          setProfit(getResult(moneyValue, yearValue))
-          setIsDisabled(false)
-        })
+      if(tariffRusianName !== ""){
+        setProfit(getResult(moneyValue, yearValue))
+        setIsDisabled(false)
       }
       else{
         setIsDisabled(true)
@@ -107,6 +93,13 @@ const PanelCalculation = ({}) => {
       return `${scaledValue} ${units[unitIndex]}`;
     }
 
+    //Получение данных тарифов
+    const getTariffs = () => {
+      axios.get(URL_GET_TARIFFS).then((resp) =>{
+          setTariffs(resp.data)
+          console.log(tariffs.map((tarif)=>tarif.russianName))
+      })
+    }
 
     return(
       <div className="PanelCalculation">
@@ -115,7 +108,7 @@ const PanelCalculation = ({}) => {
 
             <div className="PanelCalculation_containerItem">
                 <AutocompleteWrapper
-                options={tarifs}
+                options={tariffs.map((tarif)=>tarif.russianName)}
                 onInputChange={handleDropDownList}
                 label="Выберете тариф"
                 >
