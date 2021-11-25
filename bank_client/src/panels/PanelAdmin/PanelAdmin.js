@@ -98,40 +98,49 @@ const PanelAdmin = ({login, password}) => {
 
           </div>
 
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 300 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell align="left">Название</TableCell>
-                <TableCell align="left">Формула</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {tariffs.map((row, index) => (
-                <TableRow
-                  key={index}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell align="left">
-                    <TextField value={row.russianName} onChange={(event)=>{editName(event.target.value, index)}}></TextField>
-                  </TableCell>
+          <div className="PanelAdmin__Table">
+            <div className="PanelAdmin__addTariffTitle">
+              Таблица тарифов
+            </div>
 
-                  <TableCell align="left">
-                    <TextField value={row.formula} onChange={(event)=>{editFormula(event.target.value, index)}}></TextField>
-                  </TableCell>
+            <div className="PanelAdmin__TableContainer">
+              <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 300, boxShadow: 0}} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="left">Название</TableCell>
+                    <TableCell align="left">Формула</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {tariffs.map((row, index) => (
+                    <TableRow
+                      key={index}
+                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    >
+                      <TableCell align="left">
+                        <TextField value={row.russianName} onChange={(event)=>{editName(event.target.value, index)}}></TextField>
+                      </TableCell>
 
-                  <TableCell align="left">
-                    <Button onClick={()=>deleteTariff(index)}>Удалить</Button>
-                  </TableCell>
+                      <TableCell align="left">
+                        <TextField value={row.formula} onChange={(event)=>{editFormula(event.target.value, index)}}></TextField>
+                      </TableCell>
 
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+                      <TableCell align="left">
+                        <Button onClick={()=>deleteTariff(index)}>Удалить</Button>
+                      </TableCell>
 
-        <Button onClick={()=>sendTariffsToServer()}>Отпарвить данные на сервер</Button>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+              </TableContainer>
+            </div>
+          </div>
 
+          <div className="PanelAdmin__SendBtn">
+            <Button variant="outlined" onClick={()=>sendTariffsToServer()}>Отпарвить данные на сервер</Button>
+          </div>
         </div>
       </div>
     );

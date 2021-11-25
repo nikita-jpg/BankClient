@@ -3,10 +3,11 @@
 }
 .PanelAdmin__container{
     width: 100%;
-    height: 400px;
+    height: 100%;
 }
+
 .PanelAdmin__addTariff{
-    margin: 30px;
+    margin: 30px 30px 50px 30px;
 }
 .PanelAdmin__addTariffTitle{
     margin-bottom: 20px;
@@ -16,4 +17,26 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.PanelAdmin__Table{
+    margin: 0 30px 30px 30px;
+}
+.PanelAdmin__TableTitle{
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+.PanelAdmin__TableContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.PanelAdmin__SendBtn{
+    width: 100%;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 20px;
 }
