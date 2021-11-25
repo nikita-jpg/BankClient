@@ -33,6 +33,7 @@ const PanelAdmin = ({login, password}) => {
             login:login,
             password:password
         }).then((resp) =>{
+            setTariffs(resp.data)
             console.log(resp)
         })
     }
