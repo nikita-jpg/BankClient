@@ -25,7 +25,7 @@ const PanelAdmin = ({login, password}) => {
       { field: 'russianName', headerName: 'Название', width: 130 },
       { field: 'formula', headerName: 'Формула', width: 130 }
     ]
-    const [tariffs ,setTariffs] = useState([{ russianName: 'Snow', formula: 'Jon'},{ russianName: 'Lannister', formula: 'Cersei'}])
+    const [tariffs, setTariffs] = useState([{ russianName: 'Snow', formula: 'Jon'},{ russianName: 'Lannister', formula: 'Cersei'}])
 
     //Получение данных тарифов
     const getTariffs = () => {
@@ -55,10 +55,27 @@ const PanelAdmin = ({login, password}) => {
       setTariffs(newTariffs)
     }
 
+    const [newTariffName, setNewTariffName] = useState("")
+    const [newTariffFormula, setNewTariffFormula] = useState("")
+
+    const addTariff = () => {
+      let newTariffs = Object.assign([], tariffs);
+      newTariffs.push({russianName: newTariffName, formula: newTariffFormula});
+      setTariffs(newTariffs)
+
+      setNewTariffName("")
+      setNewTariffFormula("")
+    }
+
 
     return (
       <div className="PanelAdmin">
         <div className="PanelAdmin__container">
+          <div className="PanelAdmin__addtariff">
+            <TextField value={newTariffName} onChange={(event)=>{setNewTariffName(event.target.value)}}></TextField>
+            <TextField value={newTariffFormula} onChange={(event)=>{setNewTariffFormula(event.target.value)}}></TextField>
+            <Button onClick={()=>addTariff()}>Добавить</Button>
+          </div>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 300 }} aria-label="simple table">
             <TableHead>
