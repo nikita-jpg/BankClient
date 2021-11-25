@@ -5,3 +5,15 @@
     width: 100%;
     height: 400px;
 }
+.PanelAdmin__addTariff{
+    margin: 30px;
+}
+.PanelAdmin__addTariffTitle{
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+.PanelAdmin__addTariffContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

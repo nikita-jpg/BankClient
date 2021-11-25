@@ -84,11 +84,20 @@ const PanelAdmin = ({login, password}) => {
     return (
       <div className="PanelAdmin">
         <div className="PanelAdmin__container">
-          <div className="PanelAdmin__addtariff">
-            <TextField value={newTariffName} onChange={(event)=>{setNewTariffName(event.target.value)}}></TextField>
-            <TextField value={newTariffFormula} onChange={(event)=>{setNewTariffFormula(event.target.value)}}></TextField>
-            <Button onClick={()=>addTariff()}>Добавить</Button>
+
+          <div className="PanelAdmin__addTariff">
+            <div className="PanelAdmin__addTariffTitle">
+              Добавить тариф
+            </div>
+
+            <div className="PanelAdmin__addTariffContainer">
+              <TextField label="Введите название тарифа" value={newTariffName} onChange={(event)=>{setNewTariffName(event.target.value)}}></TextField>
+              <TextField label="Введите формулу" value={newTariffFormula} onChange={(event)=>{setNewTariffFormula(event.target.value)}}></TextField>
+              <Button onClick={()=>addTariff()}>Добавить</Button>
+            </div>  
+
           </div>
+
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 300 }} aria-label="simple table">
             <TableHead>
