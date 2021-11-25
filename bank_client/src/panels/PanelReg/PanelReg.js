@@ -1,4 +1,5 @@
 import { Autocomplete, Button, Slider, TextField, Typography } from "@mui/material";
+import { height } from "@mui/system";
 import axios from "axios";
 import MuiPhoneNumber from "material-ui-phone-number";
 import React, { useEffect, useState } from "react";
@@ -58,7 +59,7 @@ const PanelReg = ({}) => {
         else{
             setNameError({
                 error:true,
-                helpertext:"Вы ввели неверный текст"
+                helpertext:"Вы ввели неверное имя"
             })
             return false;
         }
@@ -71,7 +72,7 @@ const PanelReg = ({}) => {
         else{
             setFamiliaError({
                 error:true,
-                helpertext:"Вы ввели неверный текст"
+                helpertext:"Вы ввели неверную фамилию"
             })
             return false;
         }
@@ -83,7 +84,7 @@ const PanelReg = ({}) => {
         else{
             setOtchestvoError({
                 error:true,
-                helpertext:"Вы ввели неверный текст"
+                helpertext:"Вы ввели неверное отчество"
             })
             return false;
         }
@@ -149,7 +150,7 @@ const PanelReg = ({}) => {
                 {/* Email */}
                 <TextFieldWrapper label="E-mail" onChange={(event)=>{setEmailValue(event.target.value)}} value={emailValue} error={emailError.error} helperText={emailError.helpertext}/>
 
-                <Button onClick={sendBtnClick}>Отпарвить заявку</Button>
+                <Button onClick={sendBtnClick} style={{maxHeight:"56px"}}>Отпарвить заявку</Button>
             </div>
         </div>
     )
