@@ -1,0 +1,8 @@
+.PanelAdmin{
+    width: 100%;
+}
+.PanelAdmin__container{
+    /* min-width: 850px; */
+    width: 100%;
+    height: 400px;
+}
