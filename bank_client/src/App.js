@@ -8,17 +8,21 @@ import TypographyWrapper from "./components/TypographyWrapper/TypographyWrapper"
 import SliderWrapper from "./components/SliderWrappe/SliderWrapper";
 import PanelCalculation from "./panels/PanelСalculation/PanelCalculation";
 import PanelReg from "./panels/PanelReg/PanelReg";
+import PanelBlank from "./panels/PanelBlank/PanelBlank";
 const { evaluate } = require('mathjs')
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 const App = () => {
 
   const [isPanelReg, setIsPanelReg] = useState(false)
+  const openRegPanel = () => setIsPanelReg(true)
   return (
     <div className="App">
       <div className="App__container">
-        <PanelCalculation></PanelCalculation>
-        {/* <PanelReg></PanelReg> */}
+        <PanelBlank>
+          <PanelCalculation></PanelCalculation>
+          <PanelReg></PanelReg>
+        </PanelBlank>
       </div>
     </div>
   );

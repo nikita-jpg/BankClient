@@ -9,7 +9,7 @@ import PanelBlank from "../PanelBlank/PanelBlank";
 import './PanelCalculation.css'
 const { evaluate } = require('mathjs')
 
-const PanelCalculation = ({}) => {
+const PanelCalculation = ({openRegPanel=()=>{}}) => {
     const uriTables = "https://a9ca-93-81-207-6.ngrok.io/?tarifServerName="
 
     const tarifs = [
@@ -108,46 +108,45 @@ const PanelCalculation = ({}) => {
 
 
     return(
-      <PanelBlank title="Анализ вклада">
+      <div className="PanelCalculation">
+          <div className="PanelCalculation__title">Калькулятор</div>
           <div className="PanelCalculation_container">
 
-          <div className="PanelCalculation_containerItem">
-              <AutocompleteWrapper
-              options={tarifs}
-              onInputChange={handleDropDownList}
-              label="Выберете тариф"
-              >
-              </AutocompleteWrapper>
-          </div>
+            <div className="PanelCalculation_containerItem">
+                <AutocompleteWrapper
+                options={tarifs}
+                onInputChange={handleDropDownList}
+                label="Выберете тариф"
+                >
+                </AutocompleteWrapper>
+            </div>
 
-          <div className="PanelCalculation_containerItem">
-              <TextFieldWrapper label="Введите сумму вклада" disabled={isDisabled} onChange={handleChangeMoney} value={moneyValue}/> 
-          </div>
+            <div className="PanelCalculation_containerItem">
+                <TextFieldWrapper label="Введите сумму вклада" disabled={isDisabled} onChange={handleChangeMoney} value={moneyValue}/> 
+            </div>
 
-          <div className="PanelCalculation_containerItem">
+            <div className="PanelCalculation_containerItem">
 
-              <TypographyWrapper text={`На срок: ${valueLabelFormat(yearValue)}`}/>
+                <TypographyWrapper text={`На срок: ${valueLabelFormat(yearValue)}`}/>
 
-              <SliderWrapper
-                  disabled={isDisabled}
-                  value={yearValue}
-                  min={1}
-                  step={1}
-                  max={10}
-                  onChange={handleChangeYears}
-              />
-              
-          </div>
+                <SliderWrapper
+                    disabled={isDisabled}
+                    value={yearValue}
+                    min={1}
+                    step={1}
+                    max={10}
+                    onChange={handleChangeYears}
+                />
+                
+            </div>
 
-          <div className="PanelCalculation_containerItem">
-              <p className="Profit_title">Сумма на выходе:</p>
-              <p className="Profit_money">{profit}</p>
-          </div>
-
-          <Button variant="contained">Contained</Button>
+            <div className="PanelCalculation_containerItem">
+                <p className="Profit_title">Сумма на выходе:</p>
+                <p className="Profit_money">{profit}</p>
+            </div>
 
           </div>
-      </PanelBlank>
+      </div>
 
     )
 }

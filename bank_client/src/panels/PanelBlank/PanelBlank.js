@@ -2,11 +2,10 @@ import { Autocomplete, Slider, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import './PanelBlank.css'
 
-const PanelBlank = ({children, title}) => {
+const PanelBlank = ({children, className=""}) => {
 
     return(
-        <div className="PanelBlank">
-            <div className="PanelBlank__title">{title}</div>
+        <div className={`PanelBlank ${className}`}>
             <div className="PanelBlank__container">
                 {children}
             </div>
