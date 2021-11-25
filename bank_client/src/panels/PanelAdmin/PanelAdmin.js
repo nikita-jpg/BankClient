@@ -13,7 +13,8 @@ import { Button, TextField } from "@mui/material";
 
 
 const PanelAdmin = ({login, password}) => {
-    const ADMIN_URL = DEFAULT_URL + "/admin/getTariffs";
+    const ADMIN_URL_GET_TARIFFS = DEFAULT_URL + "/admin/getTariffs";
+    const ADMIN_URL_SET_TARIFFS = DEFAULT_URL + "/admin/setTariffs";
 
     useEffect(()=>{
       getTariffs()
@@ -29,7 +30,7 @@ const PanelAdmin = ({login, password}) => {
 
     //Получение данных тарифов
     const getTariffs = () => {
-        axios.post(ADMIN_URL,{
+        axios.post(ADMIN_URL_GET_TARIFFS,{
             login:login,
             password:password
         }).then((resp) =>{
@@ -37,6 +38,17 @@ const PanelAdmin = ({login, password}) => {
             console.log(resp)
         })
     }
+
+    //Отправка данных тарифов
+    const sendTariffsToServer = () => {
+      axios.post(ADMIN_URL_SET_TARIFFS,{
+          login:login,
+          password:password,
+          tariffs:tariffs
+      }).then((resp) =>{
+          console.log(resp)
+      })
+  }
 
     //Редактирование таблицы
     const editName = (newName, tariffIndex) => {
@@ -108,6 +120,9 @@ const PanelAdmin = ({login, password}) => {
             </TableBody>
           </Table>
         </TableContainer>
+
+        <Button onClick={()=>sendTariffsToServer()}>Отпарвить данные на сервер</Button>
+
         </div>
       </div>
     );
