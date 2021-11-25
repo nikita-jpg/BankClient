@@ -1,10 +1,17 @@
 import React from 'react';
+import { BrowserRouter, Route, Routes} from "react-router-dom";
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import UserPage from "./pages/UserPage/UserPage";
 
 ReactDOM.render(
-  <App/>,
+  <BrowserRouter>
+    <Routes>
+      {/* <Route path="/" element={<App />} /> */}
+      <Route path="/BankClient" element={<UserPage/>} />
+    </Routes>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

@@ -1,0 +1,13 @@
+.UserPage {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../../imageBack.jpg");
+    background-size: cover;
+  }
+  .UserPage__container{
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+  }
