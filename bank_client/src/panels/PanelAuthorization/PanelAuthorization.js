@@ -5,10 +5,13 @@ import TextFieldWrapper from "../../components/TextFieldWrapper/TextFieldWrapper
 import { DEFAULT_URL } from "../../consts";
 import './PanelAuthorization.css'
 
-const PanelAuthorization = ({title="", url=""}) => {
+const PanelAuthorization = ({title="", url="", login, password,  
+    setLogin=()=>{},
+    setPassword=()=>{},
+    openNextPanel=()=>{}}) => {
 
-    const [login, setLogin] = useState("")
-    const [password, setPassword] = useState("")
+    // const [login, setLogin] = useState("")
+    // const [password, setPassword] = useState("")
     const [isBtnSendDisabled, setIsBtnSendDisabled] = useState(false)
     const [hasMistake, setHasMistake] = useState(false)
 
@@ -20,6 +23,7 @@ const PanelAuthorization = ({title="", url=""}) => {
         }).then((resp) =>{
             if(resp.data){
                 setHasMistake(false)
+                openNextPanel()
             }else{
                 setHasMistake(true)
                 setIsBtnSendDisabled(false)
