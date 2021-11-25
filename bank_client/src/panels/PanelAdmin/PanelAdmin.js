@@ -9,7 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';import './PanelAdmin.css'
 import TextFieldWrapper from "../../components/TextFieldWrapper/TextFieldWrapper";
-import { TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 
 
 const PanelAdmin = ({login, password}) => {
@@ -49,6 +49,12 @@ const PanelAdmin = ({login, password}) => {
       setTariffs(newTariffs)
     }
 
+    const deleteTariff = (tariffIndex) => {
+      let newTariffs = Object.assign([], tariffs);
+      newTariffs.splice(tariffIndex, 1);
+      setTariffs(newTariffs)
+    }
+
 
     return (
       <div className="PanelAdmin">
@@ -73,6 +79,10 @@ const PanelAdmin = ({login, password}) => {
 
                   <TableCell align="left">
                     <TextField value={row.formula} onChange={(event)=>{editFormula(event.target.value, index)}}></TextField>
+                  </TableCell>
+
+                  <TableCell align="left">
+                    <Button onClick={()=>deleteTariff(index)}>Удалить</Button>
                   </TableCell>
 
                 </TableRow>
