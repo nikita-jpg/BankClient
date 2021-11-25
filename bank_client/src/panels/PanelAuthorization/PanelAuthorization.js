@@ -10,8 +10,6 @@ const PanelAuthorization = ({title="", url="", login, password,
     setPassword=()=>{},
     openNextPanel=()=>{}}) => {
 
-    // const [login, setLogin] = useState("")
-    // const [password, setPassword] = useState("")
     const [isBtnSendDisabled, setIsBtnSendDisabled] = useState(false)
     const [hasMistake, setHasMistake] = useState(false)
 
@@ -43,10 +41,18 @@ const PanelAuthorization = ({title="", url="", login, password,
                 hasMistake &&
                 <p className="PanelAuthorization__error">Логин или пароль неверны</p>
             }
-            <TextFieldWrapper label="Логин" onChange={(event)=>{setLogin(event.target.value)}} value={login}></TextFieldWrapper>
-            <TextFieldWrapper label="Пароль" onChange={(event)=>{setPassword(event.target.value)}} value={password}></TextFieldWrapper>
 
-            <Button onClick={sendBtnClick} disabled={isBtnSendDisabled} style={{maxHeight:"56px"}}>Войти</Button>
+            <div className="PanelAuthorization__InputField">
+                <TextFieldWrapper label="Логин" onChange={(event)=>{setLogin(event.target.value)}} value={login}></TextFieldWrapper>
+            </div>
+
+            <div className="PanelAuthorization__InputField">
+                <TextFieldWrapper label="Пароль" onChange={(event)=>{setPassword(event.target.value)}} value={password}></TextFieldWrapper>
+            </div>
+
+            <div className="PanelAuthorization__CTA">
+                <Button variant="outlined" onClick={sendBtnClick} disabled={isBtnSendDisabled} style={{maxHeight:"56px"}}>Войти</Button>
+            </div>
         </div>
     )
 }

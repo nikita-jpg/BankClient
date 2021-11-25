@@ -7,10 +7,10 @@ import './AdminPage.css'
 
 const AdminPage = () => {
     const ADMIN_URL = DEFAULT_URL + "/admin";
-    const [isAdminPanel, setIsAdminPanel] = useState(true)
+    const [isAdminPanel, setIsAdminPanel] = useState(false)
 
-    const [login, setLogin] = useState("root")
-    const [password, setPassword] = useState("toor")
+    const [login, setLogin] = useState("")
+    const [password, setPassword] = useState("")
 
     return (
       <div className="AdminPage">

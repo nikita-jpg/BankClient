@@ -13,3 +13,13 @@
     color:red;
     font-size: 16px;
 }
+
+.PanelAuthorization__InputField{
+    margin: 10px 0 10px 0;
+}
+
+.PanelAuthorization__CTA{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
