@@ -8,8 +8,7 @@ import { DEFAULT_URL } from "../../consts";
 import PanelBlank from "../PanelBlank/PanelBlank";
 import './PanelReg.css'
 
-const PanelReg = ({}) => {
-    const uriDefault = "https://d140-62-33-49-154.ngrok.io/"
+const PanelReg = ({openSuccessPanel=()=>{}}) => {
 
     const [nameValue, setNameValue] = useState("")
     const [nameError, setNameError] = useState({error:false, helpertext:""})
@@ -25,6 +24,8 @@ const PanelReg = ({}) => {
 
     const [emailValue, setEmailValue] = useState("")
     const [emailError, setEmailError] = useState({error:false, helpertext:""})
+
+    const [isBtnSendDisabled, setIsBtnSendDisabled] = useState(false)
 
     //Обработчики
     const checkFIOValue = (data) => {
@@ -51,6 +52,7 @@ const PanelReg = ({}) => {
         }
     }
 
+    //Проверка всех данных перед отправкой
     const checkAllData = () => {
         //Проверка имени
         if(checkFIOValue(nameValue)){
@@ -124,13 +126,17 @@ const PanelReg = ({}) => {
             phoneNumber:phoneValue,
             email:emailValue
         }).then((resp) =>{
-            console.log(resp.data)
+            if(resp.status === 200){
+                openSuccessPanel()
+            }
+            console.log(resp.status)
           })
     }
 
     const sendBtnClick = () => {
         if(checkAllData()){
             sendData()
+            setIsBtnSendDisabled(true)
         }
     }
 
@@ -150,7 +156,7 @@ const PanelReg = ({}) => {
                 {/* Email */}
                 <TextFieldWrapper label="E-mail" onChange={(event)=>{setEmailValue(event.target.value)}} value={emailValue} error={emailError.error} helperText={emailError.helpertext}/>
 
-                <Button onClick={sendBtnClick} style={{maxHeight:"56px"}}>Отпарвить заявку</Button>
+                <Button onClick={sendBtnClick} disabled={isBtnSendDisabled} style={{maxHeight:"56px"}}>Отпарвить заявку</Button>
             </div>
         </div>
     )

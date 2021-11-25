@@ -9,20 +9,27 @@ import SliderWrapper from "./components/SliderWrappe/SliderWrapper";
 import PanelCalculation from "./panels/PanelСalculation/PanelCalculation";
 import PanelReg from "./panels/PanelReg/PanelReg";
 import PanelBlank from "./panels/PanelBlank/PanelBlank";
+import PanelSuccess from "./panels/PanelSuccess/PanelSuccess";
 const { evaluate } = require('mathjs')
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 const App = () => {
 
-  const [isPanelReg, setIsPanelReg] = useState(false)
-  const openRegPanel = () => setIsPanelReg(true)
+  const [isPanelSuccessVisible, setIsPanelSuccessVisible] = useState(false)
   return (
     <div className="App">
       <div className="App__container">
-        <PanelBlank>
-          <PanelCalculation></PanelCalculation>
-          <PanelReg></PanelReg>
-        </PanelBlank>
+        {
+          isPanelSuccessVisible ? 
+          <PanelBlank>
+            <PanelSuccess successMessage="Отправлено успешно"></PanelSuccess>
+          </PanelBlank>
+          :
+          <PanelBlank>
+            <PanelCalculation></PanelCalculation>
+            <PanelReg openSuccessPanel={()=>setIsPanelSuccessVisible(true)}></PanelReg>
+          </PanelBlank>
+        }
       </div>
     </div>
   );
