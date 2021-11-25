@@ -43,6 +43,11 @@ const PanelAdmin = ({login, password}) => {
       newTariffs[tariffIndex].russianName = newName;
       setTariffs(newTariffs)
     }
+    const editFormula = (newFormula, tariffIndex) => {
+      let newTariffs = Object.assign([], tariffs);
+      newTariffs[tariffIndex].formula = newFormula;
+      setTariffs(newTariffs)
+    }
 
 
     return (
@@ -67,7 +72,7 @@ const PanelAdmin = ({login, password}) => {
                   </TableCell>
 
                   <TableCell align="left">
-                    <TextField value={row.formula}></TextField>
+                    <TextField value={row.formula} onChange={(event)=>{editFormula(event.target.value, index)}}></TextField>
                   </TableCell>
 
                 </TableRow>
