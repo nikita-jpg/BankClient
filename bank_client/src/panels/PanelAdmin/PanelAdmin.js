@@ -20,13 +20,7 @@ const PanelAdmin = ({login, password}) => {
       getTariffs()
     },[])
 
-    const columns = 
-    [
-      { field: 'id', headerName: 'ID', width: 70 },
-      { field: 'russianName', headerName: 'Название', width: 130 },
-      { field: 'formula', headerName: 'Формула', width: 130 }
-    ]
-    const [tariffs, setTariffs] = useState([{ russianName: 'Snow', formula: 'Jon'},{ russianName: 'Lannister', formula: 'Cersei'}])
+    const [tariffs, setTariffs] = useState([])
 
     //Получение данных тарифов
     const getTariffs = () => {
